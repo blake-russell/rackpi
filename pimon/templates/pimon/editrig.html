@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>
+{{ config.sitename }} - Edit Rig
+</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.css">
+</head>
+
+<div id="title">
+ <h1><FONT COLOR="#FFFFFF">{{ config.sitename }} - Edit Rig</FONT></h1>
+</div>
+
+
+<form method="POST" class="post-form">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="save btn btn-default">Submit</button>
+</form>
+
+</html>

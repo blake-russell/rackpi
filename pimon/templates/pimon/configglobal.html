@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>
+{{ config.sitename }} - Configuration
+</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.css">
+</head>
+
+<div id="title">
+ <h2><FONT COLOR="#FFFFFF">Global Configuration</FONT></h2>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function() {
+  window.onbeforeunload = function(){ parent.scrollTo(0,0); }
+});
+</script>
+
+<table>
+  <tr>
+    <td align="left" style="width:160px;white-space: text-align:left" rowspan="26"><FONT COLOR="#A0A0A0"><form method="POST" class="post-form">{% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="save btn btn-default">Submit</button>
+              </form></FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Site Name:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Cosmetic site name that will show up across the site's front end.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Timezone:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> To display the correct time in timestamps (please configure also configure in settings.py as part of the site uses that setting).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Electric Cost:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Cost per kWh to calculate profitability (USD currently only currency configured).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Email Type:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Email host (currently not in use, only gmail supported at this time).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Email:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Your email address (Please configure settings.py as well).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Email Password:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Email password (gmail requires an <a href="https://security.google.com/settings/security/apppasswords">app-enabled password</a>).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Email Recepient:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> You may specify an email recepient. If left blank, modules will email your own email.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Modules:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Click on the front-end modules to display on the dashboard and across the front-end website.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>WTM Include Myrigs:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Include rigs configured in Myrigs configuration in the WTM (Whattomine) module.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>GPU Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for GPU monitoring.</FONT></td>
+  </tr>
+    <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>GPU Reset Check:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to wait before issuing a rig reset once a rig is detected down, unreachable, low hashrate or high temps in the GPU/custom FPGA rig checks for Myrigs.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>GPU Reset Wait Timer:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to wait to begin the Myrig check process once a rig has been reset (in case of slow boot times, windows updates, etc).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>GPU Reset Attempts:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Number of times to attempt a reset a GPU rig before giving up.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>ASIC Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for ASIC monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>ASIC Reset Check:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to wait before issuing a rig reset once a rig is detected down, unreachable, low hashrate or high temps in the ASIC/FPGA rig checks for Myrigs.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>ASIC Reset Wait Timer:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to wait to begin the Myrig check process once a rig has been reset (in case of slow boot times, etc).</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>ASIC Reset Attempts:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Number of times to attempt a reset an ASIC before giving up.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>PDU Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to refresh the front-end dashboard module for PDU Monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Temp Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in minutes) to refresh the front-end dashboard module for Temperature monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Forecast Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for Forecast monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Wallet Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for Wallet monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Pool Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for MiningPool monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Profit Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for Profitability monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>WTM Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for WTM (Whattomine) monitoring.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>iFrame Monitor Refresh:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Interval (in seconds) to refresh the front-end dashboard module for a custom iFrame (0 will disable refreshing of the iFrame).</FONT></td>
+  </tr>
+</table>
+</html>

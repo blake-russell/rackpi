@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>
+{{ config.sitename }} - Add Rig
+</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.css">
+</head>
+
+<div id="title">
+ <h1><FONT COLOR="#FFFFFF">{{ config.sitename }} - Add Rig</FONT></h1>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function() {
+  window.onbeforeunload = function(){ parent.scrollTo(0,0); }
+});
+</script>
+<script>
+$(document).ready(function(){
+    $('#id_algo').hide();
+    $('#id_hash').hide();
+    $('#id_power').hide();
+    $('#id_price').hide();
+    $('#id_power').hide();
+    $('#id_address').hide();
+    $('#id_port').hide();
+    $('#id_software').hide();
+    $('#id_gpio').hide();
+    $('#id_user').hide();
+    $('#id_passw').hide();
+    $('#id_temp').hide();
+    $('#id_hashr').hide();
+    $('#id_ttwait').hide();
+    $('#id_miner').on('change', function(){
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    if (valueSelected == '13' || valueSelected == '14' || valueSelected == '') {
+      $('#id_algo').show();
+      $('#id_hash').show();
+      $('#id_power').show();
+      $('#id_price').show();
+      $('#id_power').show();
+    } else {
+      $('#id_algo').hide();
+      $('#id_hash').hide();
+      $('#id_power').hide();
+      $('#id_price').hide();
+      $('#id_power').hide();
+    }
+  });
+    $('#id_monitor').on('change', function(){
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    if (valueSelected == 'yes') {
+      $('#id_monitoremail').show();
+      $('#id_address').show();
+      $('#id_port').show();
+      $('#id_software').show();
+      $('#id_user').show();
+      $('#id_passw').show();
+    } else {
+      $('#id_monitoremail').hide();
+      $('#id_address').hide();
+      $('#id_port').hide();
+      $('#id_software').hide();
+      $('#id_user').hide();
+      $('#id_passw').hide();
+    }
+  });
+    $('#id_reset').on('change', function(){
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    if (valueSelected == 'yes') {
+      $('#id_gpio').show();
+      $('#id_temp').show();
+      $('#id_hashr').show();
+      $('#id_ttwait').show();
+      $('#id_email').show();
+    } else {
+      $('#id_gpio').hide();
+      $('#id_temp').hide();
+      $('#id_hashr').hide();
+      $('#id_ttwait').hide();
+      $('#id_email').hide();
+    }
+    return false;
+  });
+});
+</script>
+<table>
+  <tr>
+    <td align="left" style="width:160px;white-space: text-align:left" rowspan="20"><FONT COLOR="#A0A0A0"><form method="POST" class="post-form">{% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="save btn btn-default">Submit</button>
+              </form></FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Name:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> The name given to this specific entry and is used to identify this miner throughout the Pimon platform.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Miner:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> This drop-down allows to easily add a pre-defined miner such as an Antminer ASIC or Baikal FPGA. Selecting GPU or FPGA Rig allows for a fully customized form entry. Any entry may be edited manually after submission.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Algorithm:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> The algorithm that this miner will participate mining from. This is important if the Pimon's profitability module is enabled.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Hashrate:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Full system hashrate. This is important if the Pimon's profitability module is enabled. Enter hashrate in hash/second...ie 1Th/s = 1000000000000.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Power:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Full system power at pre-stated hashrate in Watts. This is important if the Pimon's profitability module is enabled.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Price:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Price of the full system when purchased. This can be used to calculate ROI. This is important if the Pimon's profitability module is enabled.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Monitor:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Select yes if you would like to enable the Pimon's monitoring module for this mining rig's status, hashrate and temperatures.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Monitor Email:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Select yes if you would like to enable the monitoring module to email you if the rig is unreachable for around 5 minutes. This feature is automatically disabled if you enable the reset feature and the email on reset option.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>IP Address:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> IP Address of the mining rig. Required if monitor module is enabled.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>API Port:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Software API port of the mining rig. Required if monitor module is enabled.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Miner Base Software:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Base software for this mining rig. Most Antminers/ASICs run bmminer or sgminer, while most gpu mining softwares are forks from ccminer, cgminer or ethminer. Required if monitor module is enabled.</FONT></td>
+  </tr>
+    <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Username:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Root username needed for most ASICs. Not typically needed for normal monitoring but required to soft reset if the reset option is enabled below.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Password:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Root password needed for soft reset on most ASICs. This password field is also needed for ethminer(Claymore) if the monitoring port is secured by password.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Reset on Problem:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Select yes if you would like the Pimon's monitoring module to reset this mining rig if possible. Most ASICs can be soft reset while this feature requires GPIO outputs to reset header for GPU/Custom FPGA miners.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>GPIO Pin (BCM):&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> If this mining rig is a GPU/Custom FPGA miner then a valid GPIO pin will be needed for hard reset functionality as well as a 5V relay and the proper wiring which can be found on the repo readme.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Reset on this Temperature:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> This is the temperature to trigger a reset. Only 1 GPU/FPGA card and/or one ASIC/FPGA chip is needed to trigger a phase 1 reset.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Reset on this Low Hashrate:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> This is the hashrate to trigger a reset. This should be accounted as the entire system's hashrate and will trigger a phase 1 reset.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Email on Reset:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Pimon will send you an email if the module resets a device. Make sure your email, sento, and password is configured in the global configuraiton.</FONT></td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space: text-align:left;word-wrap:break-word"><FONT COLOR="#A0A0A0"><b>Miner Status:&nbsp;</b></FONT><FONT COLOR="#A0A0A0" size=2> Is this mining rig enabled or disabled? If disabled it will not be monitored or tracked in anyway by the pimon platform but can be enabled at a later time.</FONT></td>
+  </tr>
+</table>
+</html>

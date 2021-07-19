@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>
+Return Feedback
+</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.css">
+</head>
+
+<div id="title">
+ <h2><FONT COLOR="{{ color }}">{{ feedback }}</FONT></h2>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function() {
+  window.onbeforeunload = function(){ parent.scrollTo(0,0); }
+});
+</script>
+
+</html>
